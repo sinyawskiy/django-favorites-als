@@ -29,18 +29,17 @@ class FavoriteManager(models.Manager):
         content_type = ContentType.objects.get_for_model(type(obj))
         self.get_queryset().filter(user=user, content_type=content_type, object_id=obj.pk).delete()
 
-    def favorites_obj_of_user(self, user, obj):
+    def favorites_obj_of_user(self, user, model_class):
         """get user's obj. It can tell whether user has favorite obj
         """
-        content_type = ContentType.objects.get_for_model(type(obj))
-        return self.get_queryset().filter(user=user, content_type=content_type, object_id=obj.pk)
+        content_type = ContentType.objects.get_for_model(model_class)
+        return self.get_queryset().filter(user=user, content_type=content_type)
 
-    def favorites_for_obj(self, obj):
+    def favorites_for_obj(self, model_class):
         """get favorites for specific object.
         """
-        content_type = ContentType.objects.get_for_model(type(obj))
-        return self.get_queryset().filter(content_type=content_type,
-                                           object_id=obj.pk)
+        content_type = ContentType.objects.get_for_model(model_class)
+        return self.get_queryset().filter(content_type=content_type)
 
     def favorites_of_user(self, user):
         """get user's favorites item
