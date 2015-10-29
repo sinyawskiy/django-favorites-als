@@ -7,7 +7,7 @@ from favorites.models import Favorite
 
 class TestFavoritesView(View):
     def get(self, request, uuid):
-        if request.user.is_authenticated() and request.user.has_perm('contacts.person_add_to_favorites'):
+        if request.user.is_authenticated() and request.user.has_perm('testapp.test_add_to_favorites'):
             errors = []
             action = u''
             try:
