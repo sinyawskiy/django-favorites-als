@@ -15,6 +15,6 @@ register.filter('favorite_count', favorite_count)
 
 
 def is_in_favorites(user, favorite_object):
-    return favorite_object in [favorite.content_object for favorite in Favorite.objects.favorites_obj_of_user(user, favorite_object)]
+    return favorite_object in [favorite.content_object for favorite in Favorite.objects.favorites_obj_of_user(user, type(favorite_object))]
 
 register.filter('is_in_favorites', is_in_favorites)
